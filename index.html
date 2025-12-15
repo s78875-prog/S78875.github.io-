@@ -1,251 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Bento Grid | Muhammad Fadhli</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        /* --- General Reset & Styling --- */
-        :root {
-            /* Rule 4: Clean, Scientific Color Palette */
-            --color-background: #F8F9FA; /* Soft White/Light Grey */
-            --color-surface: #FFFFFF;    /* White for Cards */
-            --color-text-primary: #212529; /* Dark Grey/Near Black */
-            --color-text-secondary: #6C757D; /* Medium Grey */
-            /* UPDATED ACCENT: Deep Ocean Blue for UMT Theme */
-            --color-accent: #0056B3;     /* Deep Ocean Blue */ 
-            --color-border: #DEE2E6;     /* Light Border Grey */
-            --spacing-unit: 1rem;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Bento Grid | Muhammad Fadhli</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+<style>
+:root {
+    --color-background: #F8F9FA;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #212529;
+    --color-text-secondary: #6C757D;
+    --color-accent: #0056B3;
+    --color-border: #DEE2E6;
+    --spacing-unit: 1rem;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--color-background);
-            color: var(--color-text-primary);
-            padding: 3rem 1rem;
-            min-height: 100svh;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    padding: 3rem 1rem;
+    min-height: 100vh;
+}
 
-        /* --- Bento Grid Layout (Desktop) --- */
-        .bento-grid {
-            display: grid;
-            gap: var(--spacing-unit);
-            grid-template-columns: repeat(3, 1fr);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.bento-grid {
+    display: grid;
+    gap: var(--spacing-unit);
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        /* --- Card Styling --- */
-        .bento-card {
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-        }
+.bento-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease-in-out, box-shadow 0.2s; 
+    display: flex;
+    flex-direction: column;
+}
 
-        .bento-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        }
+.bento-card:hover {
+    transform: scale(1.02); 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    z-index: 10;
+}
 
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--color-accent);
-        }
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--color-accent);
+}
 
-        .card-content p {
-            margin-bottom: 0.5rem;
-            line-height: 1.5;
-        }
-        
-        /* Specific content styling for Card 1 (Profile) */
-        .card-profile .name {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            color: var(--color-text-primary);
-        }
+.card-content p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
 
-        .card-profile .details {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--color-text-secondary);
-        }
-        
-        .card-profile .tagline {
-            font-style: italic;
-            color: var(--color-accent);
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
+/* ===== PROFILE CARD BACKGROUND IMAGE ===== */
+.card-profile {
+    background-image: url("bg.jpg"); /* pastikan bg.jpg satu folder dengan HTML */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-        .card-profile .social-links a {
-            display: inline-block;
-            margin-right: 1rem;
-            margin-top: 1rem;
-            color: var(--color-accent);
-            text-decoration: none;
-            font-weight: 500;
-        }
+    position: relative;
+    color: white;
+}
 
-        /* Specific content styling for Card 2 (Location) */
-        .card-location .time {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-top: 0.5rem;
-        }
+/* overlay supaya teks jelas */
+.card-profile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    border-radius: 12px;
+}
 
-        /* Specific content styling for Card 3 (Subjects) */
-        .card-tech-stack ul {
-            list-style: none;
-            padding: 0;
-        }
+/* content di atas overlay */
+.card-profile > * {
+    position: relative;
+    z-index: 1;
+}
 
-        .card-tech-stack li {
-            background-color: var(--color-background);
-            padding: 0.4rem 0.6rem;
-            margin-bottom: 0.5rem;
-            border-left: 3px solid var(--color-accent);
-            border-radius: 4px;
-            font-size: 0.95rem;
-        }
+/* Profile Card Text */
+.card-profile .name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
 
-        /* --- Grid Span Definitions (Desktop) --- */
-        .card-1 { grid-column: span 2; grid-row: span 2; }
-        .card-6 { grid-column: span 3; }
-        /* Cards 2, 3, 4, 5 default to span 1 column */
-        
-        /* --- Responsiveness (Stacked vertically on mobile) --- */
-        @media (max-width: 768px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-                padding: 0 0.5rem;
-            }
+.card-profile .details {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #e9ecef;
+}
 
-            .bento-card {
-                grid-column: span 1 !important;
-                grid-row: auto !important;
-            }
-            
-            body {
-                padding: 1rem 0.5rem;
-            }
-            
-            .card-profile .name {
-                font-size: 2rem;
-            }
-        }
-        
-    </style>
+.card-profile .tagline {
+    font-style: italic;
+    color: #cfe2ff;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.card-profile .social-links a {
+    display: inline-block;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Tech stack card */
+.card-tech-stack ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card-tech-stack li {
+    background-color: var(--color-background);
+    padding: 0.4rem 0.6rem;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+/* Playlist Card */
+.card-6 .card-content {
+    flex-grow: 1;
+    padding-top: 0.5rem;
+}
+
+.card-6 iframe {
+    width: 100%;
+    height: 152px; 
+    border-radius: 8px;
+}
+
+/* Grid spans */
+.card-1 { grid-column: span 2; grid-row: span 2; }
+.card-6 { grid-column: span 3; }
+.card-7 { grid-column: span 1; }
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        padding: 0 0.5rem;
+    }
+
+    .bento-card {
+        grid-column: span 1 !important;
+        grid-row: auto !important;
+    }
+
+    .card-profile .name {
+        font-size: 2rem;
+    }
+}
+</style>
 </head>
+
 <body>
+<div class="bento-grid">
 
-    <div class="bento-grid">
-        
-        <div class="bento-card card-1 card-profile">
-            <header>
-                <h1 class="name">MUHAMMAD FADHLI BIN NOR HISHAM</h1>
-                <p class="details">
-                    <span style="font-weight: 600; color: var(--color-accent);">Agrotechnology Program</span>, Year 1
-                </p>
-                <p class="tagline">
-                    "Innovating modern agriculture."
-                </p>
-            </header>
-            <div class="card-content" style="margin-top: auto;">
-                <div class="social-links">
-                    <a href="#" target="_blank">LinkedIn</a>
-                    <a href="#" target="_blank">GitHub</a>
-                    <a href="#" target="_blank">UMT Portal</a>
-                </div>
+    <div class="bento-card card-1 card-profile">
+        <header>
+            <h1 class="name">MUHAMMAD FADHLI BIN NOR HISHAM</h1>
+            <p class="details">
+                <span style="font-weight: 600; color: var(--color-accent);">Agrotechnology Program</span>, Year 1
+            </p>
+            <p class="tagline">"Innovating modern agriculture."</p>
+        </header>
+        <div class="card-content" style="margin-top:auto;">
+            <div class="social-links">
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank">UMT Portal</a>
             </div>
         </div>
-        
-        <div class="bento-card card-2 card-location">
-            <h2 class="card-title">📍 Current Location</h2>
-            <div class="card-content">
-                <p>UMT Campus, Kuala Nerus</p>
-                <div class="time" id="current-time"></div>
-            </div>
-            <script>
-                // Simple script to display the current local time (Kuala Terengganu, Malaysia is UTC+8)
-                function updateTime() {
-                    const now = new Date();
-                    // Using toLocaleTimeString with the specific timezone for accuracy in case the client time is wrong
-                    const options = { 
-                        hour: '2-digit', 
-                        minute: '2-digit', 
-                        hour12: true, 
-                        timeZone: 'Asia/Kuala_Lumpur' 
-                    };
-                    // Displaying time with location name, as per the current time context
-                    document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', options);
-                }
-                updateTime();
-                setInterval(updateTime, 60000); // Update every minute
-            </script>
-        </div>
-        
-        <div class="bento-card card-3 card-tech-stack">
-            <h2 class="card-title">🌱 Core Modules</h2>
-            <div class="card-content">
-                <ul>
-                    <li>Soil Science</li>
-                    <li>Microbiology</li>
-                    <li>Lab Analysis</li>
-                    <li>Computer System and Analysis</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="bento-card card-4">
-            <h2 class="card-title">🔎 Current Research Project</h2>
-            <div class="card-content">
-                <p style="font-weight: 500;">
-                    Starch Gelatinization in Local Kuih
-                </p>
-                <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 0.75rem;">
-                    Analyzing texture profiles of Kuih Lapis to understand the impact of varying starch-to-water ratios on consumer preference.
-                </p>
-            </div>
-        </div>
-        
-        <div class="bento-card card-5">
-            <h2 class="card-title">🧘‍♀️ Campus Activity</h2>
-            <div class="card-content">
-                <p>
-                    Evening walks at **Pantai UMT**. A great way to clear the mind and appreciate the local coastal environment.
-                </p>
-            </div>
-        </div>
-
-        <div class="bento-card card-6">
-            <h2 class="card-title">🎧 Deep Focus Playlist</h2>
-            <div class="card-content">
-                <p style="color: var(--color-text-secondary);">
-                    *Placeholder for an embedded music player (e.g., Spotify, YouTube Music).
-                </p>
-                <p>
-                    **Suggested:** Instrumental tracks for concentrated study.
-                </p>
-            </div>
-        </div>
-
     </div>
 
+    <div class="bento-card card-2 card-location">
+        <h2 class="card-title">📍 Current Location</h2>
+        <div class="card-content">
+            <p>UMT Campus, Kuala Nerus</p>
+            <div class="time" id="current-time"></div>
+        </div>
+        <script>
+            function updateTime() {
+                const now = new Date();
+                const options = { 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    hour12: true, 
+                    timeZone: 'Asia/Kuala_Lumpur' 
+                };
+                document.getElementById('current-time').textContent = now.toLocaleTimeString('en-US', options);
+            }
+            updateTime();
+            setInterval(updateTime, 60000);
+        </script>
+    </div>
+
+    <div class="bento-card card-3 card-tech-stack">
+        <h2 class="card-title">🌱 Core Modules</h2>
+        <div class="card-content">
+            <ul>
+                <li>Soil Science</li>
+                <li>Microbiology</li>
+                <li>Lab Analysis</li>
+                <li>Computer System and Analysis</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="bento-card card-4">
+        <h2 class="card-title">🔎 Current Research Project</h2>
+        <div class="card-content">
+            <p style="font-weight: 500;">Starch Gelatinization in Local Kuih</p>
+            <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 0.75rem;">
+                Analyzing texture profiles of Kuih Lapis to understand the impact of varying starch-to-water ratios on consumer preference.
+            </p>
+        </div>
+    </div>
+
+    <div class="bento-card card-5">
+        <h2 class="card-title">🧘‍♀️ Campus Activity</h2>
+        <div class="card-content">
+            <p>Evening walks at **Pantai UMT**. A great way to clear the mind and appreciate the local coastal environment.</p>
+        </div>
+    </div>
+
+    <div class="bento-card card-7">
+        <h2 class="card-title">🇲🇾 Why Food Tech Matters</h2>
+        <div class="card-content">
+            <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+        </div>
+    </div>
+
+    <div class="bento-card card-6">
+        <h2 class="card-title">🎧 Deep Focus Playlist</h2>
+        <div class="card-content">
+            <iframe 
+                style="border-radius:12px" 
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" 
+                frameborder="0" 
+                allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>
