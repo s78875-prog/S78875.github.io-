@@ -67,18 +67,37 @@ body {
     line-height: 1.5;
 }
 
+/* ===== CASE STUDY BUTTON STYLE ===== */
+.focus-timer-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.2rem;
+    background-color: #ffadad; /* Lofi Pink from the app */
+    color: #4a4e69;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.focus-timer-btn:hover {
+    background-color: #ffd6a5; /* Lofi Peach hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 /* ===== PROFILE CARD BACKGROUND IMAGE ===== */
 .card-profile {
-    background-image: url("bg.jpg"); /* pastikan bg.jpg satu folder dengan HTML */
+    background-image: url("bg.jpg"); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     position: relative;
     color: white;
 }
 
-/* overlay supaya teks jelas */
 .card-profile::before {
     content: "";
     position: absolute;
@@ -87,13 +106,11 @@ body {
     border-radius: 12px;
 }
 
-/* content di atas overlay */
 .card-profile > * {
     position: relative;
     z-index: 1;
 }
 
-/* Profile Card Text */
 .card-profile .name {
     font-size: 2.5rem;
     font-weight: 800;
@@ -124,7 +141,6 @@ body {
     font-weight: 500;
 }
 
-/* Tech stack card */
 .card-tech-stack ul {
     list-style: none;
     padding: 0;
@@ -139,7 +155,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* Playlist Card */
 .card-6 .card-content {
     flex-grow: 1;
     padding-top: 0.5rem;
@@ -236,6 +251,7 @@ body {
             <p style="color: var(--color-text-secondary); font-size: 0.9rem; margin-top: 0.75rem;">
                 Analyzing texture profiles of Kuih Lapis to understand the impact of varying starch-to-water ratios on consumer preference.
             </p>
+            <a href="https://s78875-prog.github.io/focus-timer-app/app.html" target="_blank" class="focus-timer-btn">Try My Focus Timer App</a>
         </div>
     </div>
 
